@@ -7,7 +7,8 @@ module.exports = function(grunt) {
         MONGO_URI: 'mongodb://localhost/<%= pkg.name %>-test'
       },
       dev: {
-        MONGO_URI: 'mongodb://localhost/<%= pkg.name %>-dev'
+        MONGO_URI: 'mongodb://localhost/<%= pkg.name %>-dev',
+        PORT: 3000
       }
     },
     mochaTest: {
@@ -20,7 +21,11 @@ module.exports = function(grunt) {
     },
     exec: {
       server: {
-        cmd: 'MONGO_URI=<%= env.dev.MONGO_URI %> node index.js'
+        cmd: [
+          'MONGO_URI=<%= env.dev.MONGO_URI %>',
+          'PORT=<%= env.dev.PORT %>',
+          'node index.js'
+        ].join(' ')
       }
     }
   });
@@ -30,5 +35,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('test', ['env:test', 'mochaTest:test']);
+  grunt.registerTask('server', ['exec:server']);
+  grunt.registerTask('s', 'server');
   grunt.registerTask('default', 'test');
 }

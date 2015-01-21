@@ -8,7 +8,8 @@
     "url": "git@github.com:joerx/not-a-journal.git"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "grunt s"
   },
   "author": "Joerg Henning <joerg.henning@gmail.com>",
   "license": "ISC",
