@@ -1,0 +1,21 @@
+{
+  "name": "not-a-journal",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/joerx/not-a-journal",
+  "authors": [
+    "Joerg Henning <henning.joerg@gmail.com>"
+  ],
+  "license": "ISC",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}

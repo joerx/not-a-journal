@@ -15,7 +15,7 @@ module.exports = function(config) {
   if (!mongoUri) {
     throw Error('Failed to init app. Please set MONGO_URI');
   }
-  mongoose.connect(mongoUri);
+  var conn = mongoose.createConnection(mongoUri);
 
   var entrySchema = new mongoose.Schema({
     title: String,
@@ -28,7 +28,7 @@ module.exports = function(config) {
     modified: Date
   });
 
-  var Entry = mongoose.model('Entry', entrySchema);
+  var Entry = conn.model('Entry', entrySchema);
 
   // exprezz
   var app = express();
@@ -108,7 +108,7 @@ module.exports = function(config) {
   app.use('/api/entries', router);
 
   // static routes, one for app files, one for bower assets
-  app.use(express.static(__dirname + '/public'));
+  app.use('/', express.static(__dirname + '/public'));
   app.use('/assets', express.static(__dirname + '/bower_components'));
 
   // 404 catchall
