@@ -1,6 +1,6 @@
 (function() {
 
-  var services = angular.module('notAJournal.Services', []);
+  var services = angular.module('notAJournal.services', []);
 
   /**
    * Service to retrieve and manipulate journal entries from the backend.
@@ -28,9 +28,56 @@
     }
   });
 
+  var directives = angular.module('notAJournal.directives', []);
+
+  directives.directive('notifications', function() {
+    return {
+      template: '',
+      scope: true,
+      controller: function($scope, $rootScope, $timeout) {
+        var current;
+        var currentTimeout;
+
+        function clearCurrent() {
+          current.remove();
+          $timeout.cancel(currentTimeout);
+        }
+
+        function display(elem) {
+          $('body').append(elem);
+          current = elem;
+          currentTimeout = $timeout(function() {
+            elem.remove();
+            current = null; currentTimeout = null;
+          }, 1000);
+        }
+
+        function showNotification(type, msg) {
+          var elem = $('<div class="alert alert-' + type + '">' + msg + '</div>');
+          var top = Math.max(0, (($(window).height() - elem.outerHeight()) - 100)
+                                + $(window).scrollTop())
+          var left = Math.max(0, (($(window).width() - elem.outerWidth()) / 2)
+                                + $(window).scrollLeft())
+
+          elem.css('position', 'absolute');
+          elem.css('top', top + 'px');
+          elem.css('left', left + 'px');
+
+          if (current) {clearCurrent();}
+          display(elem);
+        }
+
+        $rootScope.$on('info', function(evt, msg) {
+          showNotification('info', msg);
+        });
+      }
+    }
+  });
+
   var app = angular.module('notAJournal', [
     'ngRoute',
-    'notAJournal.Services'
+    'notAJournal.directives',
+    'notAJournal.services'
   ]);
 
   app.config(function($routeProvider) {
@@ -164,6 +211,10 @@
           $scope.loading = false;
         });
     })();
+
+    $scope.test = function() {
+      $scope.$emit('info', 'Hello Info!');
+    }
   });
 
 })();
