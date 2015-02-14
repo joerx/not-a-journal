@@ -68,6 +68,7 @@
         }
 
         $rootScope.$on('info', function(evt, msg) {
+          console.log('Info:', msg);
           showNotification('info', msg);
         });
       }
@@ -129,7 +130,8 @@
           $scope.entry = response.data.data;
         })
         .catch(function(response) {
-          console.error('error retrieving entry');
+          console.error(response);
+          $scope.$emit('error', 'Failed to read entry from server.');
         });
     }
 
@@ -147,12 +149,12 @@
       } else {
         ($scope.id ? putEntry() : postEntry())
           .then(function(response) {
-            console.log('success!', response);
-            $scope.$emit('entry.added', response.data.data);
+            $scope.$emit('info', 'Entry saved successfully.');
             $location.url('/');
           })
           .catch(function(response) {
-            console.error('error saving entry', response);
+            console.error(response);
+            $scope.$emit('error', 'Failed to save entry.');
           });
       }
     };
@@ -171,7 +173,8 @@
           $scope.entry = response.data.data;
         })
         .catch(function(response) {
-          console.error('Error loading entry from backend', response);
+          console.error(response);
+          $scope.$emit('error', 'Failed to read entry from server.');
         })
         .finally(function() {
           $scope.loading = false;
@@ -181,11 +184,13 @@
     $scope.deleteEntry = function deleteEntry() {
       Entries.del($scope.id)
         .then(function(response) {
+          console.log('entry deleted');
+          $scope.$emit('info', 'Entry deleted successfully.');
           $location.url('/');
-          console.log('Entry deleted');
         })
         .catch(function(response) {
-          console.error('Error deleting entry', response);
+          console.error(response);
+          $scope.$emit('error', 'Failed to delete entry from server.');
         });
     }
   });
@@ -205,16 +210,13 @@
           $scope.entries = response.data.collection;
         })
         .catch(function(response) {
-          console.error('error getting entries from backend', response);
+          console.error(response);
+          $scope.$emit('error', 'Failed to read entries from server.');
         })
         .finally(function() {
           $scope.loading = false;
         });
     })();
-
-    $scope.test = function() {
-      $scope.$emit('info', 'Hello Info!');
-    }
   });
 
 })();
