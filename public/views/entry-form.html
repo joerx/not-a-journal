@@ -1,0 +1,92 @@
+<h1 ng-if="!id">Don't Create a Journal Entry</h1>
+<h1 ng-if="id">Don't Edit this Journal Entry</h1>
+
+<form name="entryForm" id="entry-form" novalidate>
+
+  <!-- entry.title -->
+  <div class="form-group">
+    <label for="new-entry-title">Title</label><br/>
+    <input type="text"
+        placeholder="Title"
+        name="title"
+        id="new-entry-title"
+        ng-model="entry.title"
+        required
+        ng-minlength="5"/>
+    <div class="error" ng-show="entryForm.title.$dirty && entryForm.title.$invalid">
+      <small class="error" ng-show="entryForm.title.$error.required">
+        Title is required
+      </small>
+      <small class="error" ng-show="entryForm.title.$error.minlength">
+        Title must contain 5 or more characters
+      </small>
+    </div>
+  </div>
+
+  <!-- entry.content -->
+  <div class="form-group">
+    <label for="new-entry-content">Content</label><br/>
+    <textarea name="content"
+        rows="5"
+        cols="100"
+        id="new-entry-content"
+        ng-model="entry.content"
+        required
+        ng-minlength="5"></textarea>
+    <div class="error" ng-show="entryForm.content.$dirty && entryForm.content.$invalid">
+      <small class="error" ng-show="entryForm.content.$error.required">
+        Content is required
+      </small>
+      <small class="error" ng-show="entryForm.content.$error.minlength">
+        Content must contain 5 or more characters
+      </small>
+    </div>
+  </div>
+
+  <!-- entry.author.name -->
+  <div class="form-group">
+    <label for="new-entry-author-name">Author Name</label><br/>
+    <input type="text"
+        name="authorName"
+        placeholder="Author Name"
+        id="new-entry-author-name"
+        ng-model="entry.author.name"
+        required/>
+    <div class="error"
+        ng-show="entryForm.authorName.$dirty && entryForm.authorName.$invalid">
+      <small class="error" ng-show="entryForm.authorName.$error.required">
+        Author name is required
+      </small>
+    </div>
+  </div>
+
+  <!-- entry.author.email -->
+  <div class="form-group">
+    <label for="new-entry-author-email">Author Email</label><br/>
+    <input type="email"
+        name="authorEmail"
+        placeholder="Author Email"
+        id="new-entry-author-email"
+        ng-model="entry.author.email"
+        required/>
+    <div class="error"
+        ng-show="entryForm.authorEmail.$dirty && entryForm.authorEmail.$invalid">
+      <small class="error" ng-show="entryForm.authorEmail.$error.required">
+        Author email is required
+      </small>
+      <small class="error" ng-show="entryForm.authorEmail.$error.email">
+        Author email must be a valid email address
+      </small>
+    </div>
+  </div>
+
+  <!-- submit button -->
+  <div class="form-group">
+    <button type="submit"
+        id="new-entry-submit"
+        ng-click="submitEntry()"
+        ng-disabled="!entryForm.$valid">
+      Submit
+    </button>
+  </div>
+</form>
