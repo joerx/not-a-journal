@@ -47,6 +47,10 @@
         templateUrl: 'views/entry-form.html',
         controller: 'EntryFormController'
       })
+      .when('/entry/view/:id', {
+        templateUrl: 'views/entry-view.html',
+        controller: 'EntryViewController'
+      })
       .otherwise({
         redirectTo: '/'
       })
@@ -106,6 +110,37 @@
       }
     };
 
+  });
+
+  app.controller('EntryViewController', function($scope, $routeParams, $location, Entries) {
+    $scope.id = $routeParams.id;
+    $scope.entry = {};
+    $scope.loading = false;
+
+    (function loadEntry() {
+      $scope.loading = true;
+      Entries.get($scope.id)
+        .then(function(response) {
+          $scope.entry = response.data.data;
+        })
+        .catch(function(response) {
+          console.error('Error loading entry from backend', response);
+        })
+        .finally(function() {
+          $scope.loading = false;
+        })
+    })();
+
+    $scope.deleteEntry = function deleteEntry() {
+      Entries.del($scope.id)
+        .then(function(response) {
+          $location.url('/');
+          console.log('Entry deleted');
+        })
+        .catch(function(response) {
+          console.error('Error deleting entry', response);
+        });
+    }
   });
 
   /**

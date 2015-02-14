@@ -4,6 +4,7 @@
   <ul>
     <li ng-repeat="entry in entries">
       {{entry.title}}&nbsp;
+      <a href="#/entry/view/{{entry._id}}">details</a>&nbsp;
       <a href="#/entry/edit/{{entry._id}}">edit</a>
     </li>
   </ul>
