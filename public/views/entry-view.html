@@ -1,0 +1,14 @@
+<h1 class="entry-title">{{entry.title}}</h1>
+
+<div class="entry-toolbar">
+  <a href="#/entry/edit/{{entry._id}}">Edit</a>&nbsp;
+  <button type="button" ng-click="deleteEntry()">Delete</a>
+</div>
+
+<div class="entry-content">
+  {{entry.content}}
+</div>
+
+<div class="entry-meta">
+  <small>Posted by {{entry.author.name}} on {{entry.created}}</small>
+</div>
