@@ -9,21 +9,21 @@ describe('static routes', function() {
 
   describe('for assets', function() {
     it('should return the jquery script', function(done) {
-      api.get('/assets/jquery/dist/jquery.min.js')
+      api.get('/assets/vendor/jquery/dist/jquery.min.js')
         .expect(200)
         .expect('content-type', /javascript/)
         .end(done);
     });
 
     it('should return the angular script', function(done) {
-      api.get('/assets/angular/angular.min.js')
+      api.get('/assets/vendor/angular/angular.min.js')
         .expect(200)
         .expect('content-type', /javascript/)
         .end(done);
     });
 
     it('should respond 404 for non-existing assets', function(done) {
-      api.get('/assets/foo/bar.js').expect(404, done);
+      api.get('/assets/vendor/foo/bar.js').expect(404, done);
     });
   });
 
@@ -34,7 +34,7 @@ describe('static routes', function() {
         .expect('content-type', /html/)
         .end(function(err, res) {
           if (err) return done(err);
-          expect(res.text).to.contain('not-a-journal');
+          expect(res.text).to.contain('Not A Journal');
           done();
         });
     });

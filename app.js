@@ -109,7 +109,6 @@ module.exports = function(config) {
 
   // static routes, one for app files, one for bower assets
   app.use('/', express.static(__dirname + '/public'));
-  app.use('/assets', express.static(__dirname + '/bower_components'));
 
   // 404 catchall
   app.use(function(req, res, next) {
