@@ -39,8 +39,8 @@ describe('static routes', function() {
         });
     });
 
-    it('should return the master stylesheet as html', function(done) {
-      api.get('/css/main.css').expect(200).expect('content-type', /css/).end(done);
+    it('should return the master stylesheet as css', function(done) {
+      api.get('/assets/css/app.min.css').expect(200).expect('content-type', /css/).end(done);
     });
   });
 });

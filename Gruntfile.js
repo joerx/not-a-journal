@@ -19,6 +19,21 @@ module.exports = function(grunt) {
         src: ['spec/**/*-spec.js']
       }
     },
+    sass: {
+      css: {
+        options: {
+          style: 'compressed',
+          compass: true
+        },
+        files: [{
+          expand: true,
+          cwd: 'public/assets/sass',
+          src: ['*.scss'],
+          dest: 'public/assets/css',
+          ext: '.min.css'
+        }]
+      }
+    },
     exec: {
       server: {
         cmd: [
@@ -33,6 +48,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   grunt.registerTask('test', ['env:test', 'mochaTest:test']);
   grunt.registerTask('server', ['exec:server']);

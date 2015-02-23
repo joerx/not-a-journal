@@ -31,3 +31,4 @@ public/assets/vendor/*
 
 # Sublime
 *.sublime-*
+.sass-cache
