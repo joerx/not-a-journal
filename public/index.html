@@ -8,18 +8,24 @@
     <meta name="description" content="">
 
     <link rel="stylesheet" href="assets/css/app.min.css">
+    <script src="assets/vendor/modernizr/modernizr.js"></script>
 
+  </head>
+  <body>
+    <!-- notifications -->
+    <div notifications>
+    </div>
+    <!-- angular route view -->
+    <div ng-view>
+    </div>
+    <!-- scripts -->
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="assets/vendor/angular/angular.min.js"></script>
     <script src="assets/vendor/angular-route/angular-route.min.js"></script>
-
-
-  </head>
-  <body
-    <div notifications>
-    </div>
-    <div ng-view>
-    </div>
+    <script src="assets/vendor/foundation/js/foundation.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
   </body>
 </html>

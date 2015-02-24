@@ -30,6 +30,16 @@
 
   var directives = angular.module('notAJournal.directives', []);
 
+  directives.directive('appNav', function() {
+    return {
+      restrict: 'A',
+      replace: true,
+      templateUrl: function(tElement, tAttrs) {
+        return 'views/nav-' + tAttrs.appNav + '.html';
+      }
+    }
+  });
+
   directives.directive('notifications', function() {
     return {
       template: '',
@@ -144,7 +154,7 @@
     }
 
     $scope.submitEntry = function() {
-      if (!$scope.entryForm.$valid) {
+      if (!$scope.f.$valid) {
         console.warn('Form not valid, cowardly refusing to submit');
       } else {
         ($scope.id ? putEntry() : postEntry())

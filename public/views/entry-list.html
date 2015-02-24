@@ -1,13 +1,16 @@
+<nav app-nav='default'></nav>
+
 <div id="entry-list" ng-controller="EntryListController">
-  <h1>No Journal Entries</h1>
-  <p>
-    <a href="#/entry/new">Don't create new entry</a>
-  </p>
-  <ul>
-    <li ng-repeat="entry in entries">
-      {{entry.title}}&nbsp;
-      <a href="#/entry/view/{{entry._id}}">details</a>&nbsp;
+  <div class="row" ng-repeat="entry in entries">
+    <div class="large-11 columns">
+      <h3><a href="#">{{entry.title}}</a></h3>
+    </div>
+    <div class="large-1 columns">
       <a href="#/entry/edit/{{entry._id}}">edit</a>
-    </li>
-  </ul>
+    </div>
+    <div class="large-12 columns">
+      {{entry.content}}
+    </div>
+    <hr/>
+  </div>
 </div>
