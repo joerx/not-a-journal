@@ -1,6 +1,18 @@
 <nav app-nav='default'></nav>
 
 <div class="row">
+  <div class="large-12 columns">
+    <dl class="sub-nav">
+      <dt>Filter:</dt>
+      <dd class="active"><a href="#">All</a></dd>
+      <dd><a href="#">Active</a></dd>
+      <dd><a href="#">Pending</a></dd>
+      <dd class="hide-for-small-only"><a href="#">Suspended</a></dd>
+    </dl>
+  </div>
+</div>
+
+<div class="row">
   <div id="entry-list" class="large-12 columns list-body" ng-controller="EntryListController">
     <div class="row list-entry" ng-repeat="entry in entries">
       <div class="entry-content clearfix">
@@ -11,8 +23,13 @@
           <div class="large-6 columns entry-title">
             <h5><a href="#">{{entry.title}}</a></h5>
           </div>
-          <div class="large-4 columns entry-actions">
-            <a href="#/entry/edit/{{entry._id}}">edit</a>
+          <div class="large-4 columns entry-actions clearfix">
+            <a href="#/entry/edit/{{entry._id}}" class="right" title="Delete">
+              <i class="fa fa-remove fa-lg"></i>
+            </a>
+            <a href="#/entry/edit/{{entry._id}}" class="right" title="Edit">
+              <i class="fa fa-pencil fa-lg"></i>
+            </a>
           </div>
         </div>
         <div class="row">

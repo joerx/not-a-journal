@@ -31,9 +31,17 @@
       margin-top: .4rem;
       margin-bottom: $header-bottom-margin;
     }
+
+    .entry-actions {
+      padding-top: 11px;
+    }
+
+    .entry-actions a {
+      color: #ccc;
+      padding: 0px 8px;
+    }
   }
 }
-
 
 h5 a {
   color: $body-font-color;
