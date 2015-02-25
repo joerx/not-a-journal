@@ -28,6 +28,14 @@
     }
   });
 
+  var filters = angular.module('notAJournal.filters', []);
+
+  filters.filter('shortenTo', function() {
+    return function(input, length) {
+      return input.length <= length ? input : input.substring(0, length - 1) + '…';
+    };
+  });
+
   var directives = angular.module('notAJournal.directives', []);
 
   directives.directive('appNav', function() {
@@ -88,7 +96,8 @@
   var app = angular.module('notAJournal', [
     'ngRoute',
     'notAJournal.directives',
-    'notAJournal.services'
+    'notAJournal.services',
+    'notAJournal.filters'
   ]);
 
   app.config(function($routeProvider) {
@@ -212,6 +221,7 @@
   app.controller('EntryListController', function($scope, $rootScope, Entries) {
     $scope.entries = [];
     $scope.loading = false;
+    $scope.today = new Date();
 
     (function loadData() {
       $scope.loading = true;

@@ -42,6 +42,12 @@ module.exports = function(grunt) {
           'node index.js'
         ].join(' ')
       }
+    },
+    watch: {
+      sass: {
+        files: ['**/*.scss'],
+        tasks: ['sass:css']
+      }
     }
   });
 
@@ -50,6 +56,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('test', ['env:test', 'mochaTest:test']);
   grunt.registerTask('server', ['exec:server']);

@@ -2,3 +2,39 @@
 @import 'settings';
 @import '../vendor/foundation/scss/normalize';
 @import '../vendor/foundation/scss/foundation';
+
+.z10 {
+  box-shadow: 0 4px 8px rgba(0,0,0,.28);
+}
+
+.top-bar {
+  margin-bottom: 15px;
+}
+
+.list-body {
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.24);
+  background-color: $white;
+
+  .list-entry {
+    border-bottom: 1px solid $gainsboro;
+
+    .entry-content {
+      margin: 0px 20px 16px 20px;
+    }
+
+    .entry-title {
+      margin-top: 12px;
+    }
+
+    .entry-date {
+      line-height: $header-line-height;
+      margin-top: .4rem;
+      margin-bottom: $header-bottom-margin;
+    }
+  }
+}
+
+
+h5 a {
+  color: $body-font-color;
+}

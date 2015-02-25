@@ -1,16 +1,29 @@
 <nav app-nav='default'></nav>
 
-<div id="entry-list" ng-controller="EntryListController">
-  <div class="row" ng-repeat="entry in entries">
-    <div class="large-11 columns">
-      <h3><a href="#">{{entry.title}}</a></h3>
+<div class="row">
+  <div id="entry-list" class="large-12 columns list-body" ng-controller="EntryListController">
+    <div class="row list-entry" ng-repeat="entry in entries">
+      <div class="entry-content clearfix">
+        <div class="row">
+          <div class="large-2 columns entry-title">
+            <p class="entry-date">{{today | date:shortDate }}</p>
+          </div>
+          <div class="large-6 columns entry-title">
+            <h5><a href="#">{{entry.title}}</a></h5>
+          </div>
+          <div class="large-4 columns entry-actions">
+            <a href="#/entry/edit/{{entry._id}}">edit</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-2 columns">
+
+          </div>
+          <div class="large-10 columns entry-body">
+            {{entry.content | shortenTo: 255}}
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="large-1 columns">
-      <a href="#/entry/edit/{{entry._id}}">edit</a>
-    </div>
-    <div class="large-12 columns">
-      {{entry.content}}
-    </div>
-    <hr/>
   </div>
 </div>
